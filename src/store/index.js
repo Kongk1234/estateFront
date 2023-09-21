@@ -7,6 +7,7 @@ export const UserStore = defineStore("user", {
   //Defining my users state
     state: () => ({
         users: [],
+        onlineJson:[]
     }),
     //Defining my getters and returning all the users in my state
     getters: {
@@ -24,6 +25,19 @@ export const UserStore = defineStore("user", {
           //Getting the data and putting it in my state
           const data = await axios.get('http://localhost:3000/')
             this.users = data.data
+          }
+          catch (error) {
+            //Alerting if an error occurs
+            alert(error)
+            console.log(error)
+        }
+      },
+      async fetchJson() {
+        //Making a try catch if an error is happening it will alert
+        try {
+          //Getting the data and putting it in my state
+          const data = await axios.get('http://localhost:3000/json')
+            this.onlineJson = data.data
           }
           catch (error) {
             //Alerting if an error occurs
