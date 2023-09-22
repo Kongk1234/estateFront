@@ -15,11 +15,13 @@
         {{ user.id }} {{ user.name }} {{ user.address }}
     </div>
     <p>Made this json online</p>
-    <ul>
-        <li> id: {{ onlineJson.id }}</li>
-        <li> name: {{ onlineJson.title  }}</li>
-        <li> age: {{ onlineJson.price }}</li>
-    </ul>
+    <div v-for="online in onlineJson.products" :key="online.id">
+        <ul>
+            <li> id: {{ online.id }}</li>
+            <li> name: {{ online.title }}</li>
+            <li> age: {{ online.description }}</li>
+        </ul>
+    </div>
 </template>
 
 <script setup>
@@ -40,6 +42,7 @@ const users = computed(() => {
 });
 
 const onlineJson = computed(() => {
+    console.log(onlineJson);
     return store.onlineJson;
 })
 //When the page is loaded it runs my fetchUsers function
